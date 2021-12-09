@@ -10,40 +10,48 @@
 
             <!--FirstName-->
             <div class = "form-group">
-                {{ form.firstName(placeholder = form.firstName.label.text, class = "form-control") }}
+                {{ form.firstName(placeholder = form.firstName.label.text, class = "form-control") }} </br>
                 {% if form.firstName.errors %} {% for error in form.firstName.errors %}
                     {{ message }}
-                {% endfor %}{% endif %}
+                {% endfor %}{% endif %} 
             </div>
 
             <!--LastName-->
             <div class = "form-group">
-                {{ form.lastName(placeholder = form.lastName.label.text, class = "form-control") }}
+                {{ form.lastName(placeholder = form.lastName.label.text, class = "form-control") }} </br>
                 {% if form.lastName.errors %} {% for error in form.lastName.errors %}
                     {{ message }}
-                {% endfor %}{% endif %}
+                {% endfor %}{% endif %} 
             </div>
 
             <!--Email-->
             <div class = "form-group">
-                {{ form.email(placeholder = form.email.label.text, class = "form-control") }}
+                {{ form.email(placeholder = form.email.label.text, class = "form-control") }} </br>
                 {% if form.email.errors %} {% for error in form.email.errors %}
                     {{ message }}
-                {% endfor %}{% endif %}
+                {% endfor %}{% endif %} 
             </div>
 
             <!--Username-->
             <div class = "form-group">
-                {{ form.username(placeholder = form.username.label.text, class = "form-control") }}
+                {{ form.username(placeholder = form.username.label.text, class = "form-control") }} </br>
                 {% if form.username.errors %} {% for error in form.username.errors %}
                     {{ message }}
-                {% endfor %}{% endif %}
+                {% endfor %}{% endif %} 
             </div>
 
             <!--Password-->
             <div class = "form-group">
-                {{ form.password(placeholder = form.password.label.text, class = "form-control") }}
+                {{ form.password(placeholder = form.password.label.text, class = "form-control") }} </br>
                 {% if form.password.errors %} {% for error in form.password.errors %}
+                    {{ message }}
+                {% endfor %}{% endif %} 
+            </div>
+
+            <!--Confirmation of the password-->
+            <div class = "form-group">
+                {{ form.confirmPassword(placeholder = form.confirmPassword.label.text, class = "form-control") }}</br>
+                {% if form.confirmPassword.errors %} {% for error in form.confirmPassword.errors %}
                     {{ message }}
                 {% endfor %}{% endif %}
             </div>

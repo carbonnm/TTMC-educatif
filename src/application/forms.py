@@ -11,7 +11,7 @@ from wtforms.validators import Length
 from wtforms.validators import EqualTo
 from wtforms.validators import ValidationError
 
-from application.models import User
+from application.models import *
 
 class RegisterForm(FlaskForm) :
     """

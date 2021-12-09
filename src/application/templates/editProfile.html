@@ -1,0 +1,20 @@
+<!--Inheritance-->
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>Modifier mon profil</h1>
+
+    <form method="POST" action="/editProfile/{{ id }}" novalidate>
+        <!--csfr token-->
+        {{ form.csrf_token }}
+        {{ form.username.label }} {{ from.username(class = "form-control") }} </br>
+        {{ form.firstName.label }} {{ form.firstName(class = "form-control") }} </br>
+        {{ form.lastName.label }} {{ form.lastName(class = "form-control") }} </br>
+        {{ form.email.label }} {{ form.email(class = "form-control") }} </br>
+
+        <!--Submittion-->
+        {{ form.submit(class = "btn btn-primary") }}
+    </form>
+
+{% endblock %}

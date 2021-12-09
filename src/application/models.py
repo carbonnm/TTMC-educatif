@@ -1,7 +1,8 @@
 from flask_login import UserMixin
-from app import db
+from application import db
 from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
+from application import login_manager
 
 #Users class 
 class User(UserMixin, db.Model) :
@@ -63,7 +64,7 @@ class Game() :
     __tablename__ = 'games'
 
     #db
-    id = db.Colum(db.Integer, primary_key = True, autoincrement = True)
+    id = db.Column(db.Integer, primary_key = True, autoincrement = True)
     name = db.Column(db.String(255), nullable = False)
     nbThemes = db.Column(db.Integer, nullable = False)
     dbQuestions = db.Column(db.Integer, nullable = False)
@@ -76,3 +77,14 @@ class Game() :
         The name of the game.
         """
         return self.name
+
+#The DB part :
+db.drop_all()
+db.create_all()
+
+db.session.commit()
+
+# callback to reload the user object
+@login_manager.user_loader
+def load_user(userID):
+    return User.query.get(int(userID))
