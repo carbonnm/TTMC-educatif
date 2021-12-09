@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block register %}active{% endblock %}
+
+{% block content %}
+    <h2>Page d'enregistrement</h2>
+    <div class = "row d-flex justify-content-center">
+        <form method = "POST" action = "/register" novalidate>
+            <!--csrf token-->
+            {{ form.csrf_token }}
+
+            <!--FirstName-->
+            <div class = "form-group">
+                {{ form.firstName(placeholder = form.firstName.label.text, class = "form-control") }}
+                {% if form.firstName.errors %} {% for error in form.firstName.errors %}
+                    {{ message }}
+                {% endfor %}{% endif %}
+            </div>
+
+            <!--LastName-->
+            <div class = "form-group">
+                {{ form.lastName(placeholder = form.lastName.label.text, class = "form-control") }}
+                {% if form.lastName.errors %} {% for error in form.lastName.errors %}
+                    {{ message }}
+                {% endfor %}{% endif %}
+            </div>
+
+            <!--Email-->
+            <div class = "form-group">
+                {{ form.email(placeholder = form.email.label.text, class = "form-control") }}
+                {% if form.email.errors %} {% for error in form.email.errors %}
+                    {{ message }}
+                {% endfor %}{% endif %}
+            </div>
+
+            <!--Username-->
+            <div class = "form-group">
+                {{ form.username(placeholder = form.username.label.text, class = "form-control") }}
+                {% if form.username.errors %} {% for error in form.username.errors %}
+                    {{ message }}
+                {% endfor %}{% endif %}
+            </div>
+
+            <!--Password-->
+            <div class = "form-group">
+                {{ form.password(placeholder = form.password.label.text, class = "form-control") }}
+                {% if form.password.errors %} {% for error in form.password.errors %}
+                    {{ message }}
+                {% endfor %}{% endif %}
+            </div>
+
+            <!--Submittion-->
+            <div class = "row d-flex justify-content-center">
+                {{ form.submit(class = "btn btn-primary") }}
+            </div>
+        </form>
+    </div>
+{% endblock %}

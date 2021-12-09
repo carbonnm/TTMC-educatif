@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+	<div class = "row d-flex justify-content-center">
+		<div class =  "card">
+			<div class = "card-body">
+				<h2 class = "card-title"> Error 404 </h2>
+				<p class = "card-text"> This isn't a valid link </p>
+				<a class = "btn btn-primary" href = {{ url_for('main') }}> Go Back Home </a>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
