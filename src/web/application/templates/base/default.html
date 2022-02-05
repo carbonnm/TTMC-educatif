@@ -1,29 +1,30 @@
-{% extends 'base/base.html.j2' %}
+{% extends 'base/base.html' %}
+
+<!--What follows concerns the navigation bar that will take place at the top of the page.-->
 {% block nav %}
     <nav class = "nav nav-tabs navbar-expand-lg">
-        <div class="container-fluid">
-            <div class="navbar-collapse">
-                <div class="navbar-nav me-auto">
-                    <a class = "nav-link {% block hc %}{% endblock  %}" href='/'>Home</a>
+        <div class = "container">
+            <!--Collapse means that the navbar is in a mobile view.-->
+            <div class = "navbar-collapse">
+
+                <!--Align averything with the end.-->
+                <!--Navigation option can be associated to a certain jinja block content.-->
+                <div class = "navbar-nav me-auto">
+                    <a class = "nav-link {% block home %}{% endblock  %}" href = '/'>Page d'accueil</a>
+                    <a class = "nav-link {% block gcreation %}{% endblock %}" href = {{ url_for('createGame') }}>Nouvelle partie</a>
+					<a class = "nav-link {% block profile %}{% endblock %}" href = {{ url_for('profile') }}>Mon Profil</a>
                     <a class = "nav-link" href = {{ url_for('logout') }}>Se deconnecter</a>
-					<a class = "nav-link" href = {{ url_for('createGame') }}>Nouvelle partie</a>
-					<a class = "nav-link" href = {{ url_for('Profile') }}>Mon Profil</a>
-                </div>
-                <div class="navbar-nav">
-                    <img src = "https://svgsilh.com/svg_v2/1787362.svg" width = 50 heigth = 50>
-                    <input id="search-bar" class="form-control d-inline" type="search" placeholder="Search for friends" aria-label="Search">
-                    <button class ="btn btn-outline-primary" id = "friend-button">Add</button>
                 </div>
             </div>
         </div>
     </nav>
 {% endblock nav %}
+
 {% block content %}
-    <div id = "friends"></div>
     <div id = "game"></div> 
 {% endblock content %}
+
 {% block scripts %}
     {{ super() }}
-    <script src = "/static/js/scripts.js" charset = "utf-8"></script>
-    <script src = "/static/js/searchbar.js" charset = "utf-8"></script>
+    <!--Scripts to be add here-->
 {% endblock scripts %}

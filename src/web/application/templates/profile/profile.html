@@ -1,7 +1,13 @@
 <!--Inheritance-->
-{% extends "base.html" %}
+{% extends "base/default.html" %}
+
+{% block profile %}
+    active
+{% endblock profile %}
 
 {% block content %}
+    <!--Super is used when both parents and child share this.-->
+    {{ super() }}
 
     <!--Display of the personal informations in form of a cart.-->
     <h2>My Information</h2>
@@ -33,7 +39,9 @@
             </table>
             <!--buttons to update the profile-->
       
-            <a href = {{ url_for('editProfile', id = current_user.id) }} class="btn btn-primary">Mettre a jour</a>
+            <a href = {{ url_for('editProfile') }} class = "btn btn-primary">Mettre a jour mon profil</a>
+            <a href = {{ url_for('editMDP') }} class = "btn btn-primary">Mettre a jour mon mot de passe</a>
+            <a href = {{ url_for('deleteProfile') }} class = "btn btn-danger">Supprimer mon compte</a>
         </div>
     </div>
 {% endblock %}

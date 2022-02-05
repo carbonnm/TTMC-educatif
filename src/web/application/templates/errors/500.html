@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base/base.html" %}
 
 {% block content %}
 
@@ -7,7 +7,7 @@
 			<div class = "card-body">
 				<h2 class = "card-title"> Erreur 500 </h2>
 				<p class = "card-text"> Erreur de serveur </p>
-				<a class = "btn btn-primary" href = {{ url_for('main') }}> Retour </a>
+				<a class = "btn btn-primary" href = {{ url_for('homepage') }}> Retour </a>
 			</div>
 		</div>
 	</div>

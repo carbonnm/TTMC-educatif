@@ -1,33 +1,22 @@
 {% extends "base/default.html.j2" %}
-{% block pc %}
+
+{% block profile %}
     active
-{% endblock pc %}
+{% endblock profile %}
+
 {% block content %}
     {{ super() }}
-    <h1>Edit my password</h1>
+    <h1>Mettre a jour mon mot de passe</h1>
     <div class = "row d-flex justifiy-content-center">
 
-        <form method = "POST" action = "/editMDP" novalidate class = "editForm">
+        <form method = "POST" action = "/editMDP" novalidate>
             <!--Token-->
             {{ form.csrf_token }}
-            <div class = "entree password">
-				<!--First name control-->
-				{{ form.password(placeholder = form.password.label.text, class = "form-control") }}
-				{% if form.password.errors %} {% for message in form.password.errors %}
-					{{ message }}
-				{% endfor %}{% endif %}
-			</div>
-
-            <div class = "entree password">
-				<!--Confirmation of password control-->
-				{{ form.confirmPassword(placeholder = form.confirmPassword.label.text, class = "form-control") }} </br>
-				{% if form.confirmPassword.errors %} {% for message in form.confirmPassword.errors %}
-					{{ message }}
-				{% endfor %}{% endif %}
-			</div>
+            {{ form.password.label }} {{ from.password(class = "form-control") }} </br>
+            {{ form.confirmPassword.label }} {{ form.confirmPassword(class = "form-control") }} </br>
             
             <!--Submittion-->
-            {{ form.submit(class = "bouton") }}
+            {{ form.submit(class = "btn btn-primary") }}
         </form>
     </div>
 {% endblock %}

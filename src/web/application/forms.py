@@ -45,7 +45,7 @@ class usernameForm(FlaskForm) :
         -----------
         Raise a validation error if the username is already token.
         """
-        if field.data in [x.username for x in User.query.all()] :
+        if field.data in [x.username for x in Player.query.all()] :
             raise ValidationError('Ce pseudo est deja pris')
         
 
@@ -71,7 +71,7 @@ class RegisterForm(FlaskForm) :
         -----------
         Raise a validation error if the username is already token.
         """
-        if field.data in [x.username for x in User.query.all()] :
+        if field.data in [x.username for x in Player.query.all()] :
             raise ValidationError('Ce pseudo est deja pris')
 
 
@@ -93,7 +93,7 @@ class LoginForm(FlaskForm) :
         -----------
         Raise a validation error if the given username does not exist at all.
         """
-        if field.data not in [x.username for x in User.query.all()] :
+        if field.data not in [x.username for x in Player.query.all()] :
             raise ValidationError('Votre pseudo n existe pas')
 
 
@@ -152,7 +152,7 @@ class QuestionForm(FlaskForm) :
     ----------------
     Formulary used to create the different questions associated to a theme
     """
-    questionName = StringField('Enonce de la question', validators = [InputRequired(message = "Entrez l'enonce de la question")])
+    enonce = StringField('Enonce de la question', validators = [InputRequired(message = "Entrez l'enonce de la question")])
     reponseA = StringField('Reponse A', validators = [InputRequired(message = "Entrez une premiere possibilite de reponse")])
     reponseB = StringField('Reponse B', validators = [InputRequired(message = "Entrez une deuxieme possibilite de reponse")])
     reponseC = StringField('Reponse C', validators = [InputRequired(message = "Entrez une trosieme possibilite de reponse")])
