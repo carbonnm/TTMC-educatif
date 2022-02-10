@@ -27,7 +27,7 @@
 
 		<!--Block of the navigation bar-->
 		{% block nav %}
-		{% endblock %}
+		{% endblock nav %}
 
 		<!--Display des messages d'erreurs-->
 		{% with messages = get_flashed_messages(with_categories = true) %}
@@ -46,9 +46,6 @@
 			{% block content %}
 			{% endblock %}
 		</div>	
-		
-		{% block content %}
-		{% endblock %}
 	</body>
 
 	<!--Gestion of the socket-->

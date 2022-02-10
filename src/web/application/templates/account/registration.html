@@ -1,5 +1,8 @@
-{% extends "base.html" %}
-{% block register %}active{% endblock %}
+{% extends 'base/base.html' %}
+
+{% block register %}
+    active
+{% endblock %}
 
 {% block content %}
     <h2>Page d'enregistrement</h2>
@@ -9,7 +12,7 @@
             {{ form.csrf_token }}
 
             <!--FirstName-->
-            <div class = "form-group">
+            <div class = "entree firstname">
                 {{ form.firstName(placeholder = form.firstName.label.text, class = "form-control") }} </br>
                 {% if form.firstName.errors %} {% for error in form.firstName.errors %}
                     {{ message }}
@@ -17,7 +20,7 @@
             </div>
 
             <!--LastName-->
-            <div class = "form-group">
+            <div class = "entree name">
                 {{ form.lastName(placeholder = form.lastName.label.text, class = "form-control") }} </br>
                 {% if form.lastName.errors %} {% for error in form.lastName.errors %}
                     {{ message }}
@@ -25,7 +28,7 @@
             </div>
 
             <!--Email-->
-            <div class = "form-group">
+            <div class = "entree email">
                 {{ form.email(placeholder = form.email.label.text, class = "form-control") }} </br>
                 {% if form.email.errors %} {% for error in form.email.errors %}
                     {{ message }}
@@ -33,7 +36,7 @@
             </div>
 
             <!--Username-->
-            <div class = "form-group">
+            <div class = "entree username">
                 {{ form.username(placeholder = form.username.label.text, class = "form-control") }} </br>
                 {% if form.username.errors %} {% for error in form.username.errors %}
                     {{ message }}
@@ -41,7 +44,7 @@
             </div>
 
             <!--Password-->
-            <div class = "form-group">
+            <div class = "entree password">
                 {{ form.password(placeholder = form.password.label.text, class = "form-control") }} </br>
                 {% if form.password.errors %} {% for error in form.password.errors %}
                     {{ message }}
@@ -49,7 +52,7 @@
             </div>
 
             <!--Confirmation of the password-->
-            <div class = "form-group">
+            <div class = "entree confirmPassword">
                 {{ form.confirmPassword(placeholder = form.confirmPassword.label.text, class = "form-control") }}</br>
                 {% if form.confirmPassword.errors %} {% for error in form.confirmPassword.errors %}
                     {{ message }}
@@ -58,7 +61,7 @@
 
             <!--Submittion-->
             <div class = "row d-flex justify-content-center">
-                {{ form.submit(class = "btn btn-primary") }}
+                {{ form.submit(class = "bouton") }}
             </div>
         </form>
     </div>

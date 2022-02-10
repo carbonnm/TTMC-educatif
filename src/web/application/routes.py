@@ -91,8 +91,11 @@ def register() :
     form = RegisterForm()
     if form.validate_on_submit():
         #Add the user
-        user = Account.add_new(form.firstName.data, form.lastName.data, form.email.data, form.username.data, generate_password_hash(form.password.data))
-        login_user(user)
+        new = Account(firstName = form.firstName.data, lastName = form.lastName.data, email = form.email.data, username = form.username.data, password = generate_password_hash(form.password.data))
+        db.session.add(new)
+        db.session.commit()
+        print("youhou")
+        login_user(new)
         return redirect(url_for("homepage"))
 
     return render_template('account/registration.html', form = form)
@@ -173,12 +176,26 @@ def editMDP():
 
 
 @app.route("/createGame", methods =["GET", "POST"])
+@login_required
 def createGame():
+    
     if not current_user.is_authenticated :
         return redirect(url_for("login"))
     
     form = PartieForm()
     #if form.validate_on_submit() :
+
+
+@app.route("/accessGame")
+@login_required
+def accessGame() :
+    """
+    This function allows an user with an account to access
+    all the games he created before in order to see them, delete them, modify them, etc ...
+    """
+    if not current_user.is_authenticated :
+        return redirect(url_for("login"))
+
 
 @app.route("/game")
 def game():

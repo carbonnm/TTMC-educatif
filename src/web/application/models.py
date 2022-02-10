@@ -4,7 +4,7 @@ from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
 from application import login_manager
 
-class Player() :
+class Player(UserMixin, db.Model) :
     """
     Player class
     ---------------
@@ -13,7 +13,7 @@ class Player() :
     """
     __tablename__ = 'player'
     IDPlayer = db.Column(db.Integer, primary_key = True, autoincrement = True)
-    username = db.Colum(db.String(255), nullable = False)
+    username = db.Column(db.String(255), nullable = False)
     #Maybe a link with an account here ?
 
     def getUsername(self) :
@@ -36,7 +36,7 @@ class Account(UserMixin, db.Model) :
     __tablename__ = 'account'
 
     #DB
-    IDAccount = db.Column(db.Integer, primary_key = True, autoincrement = True)
+    id = db.Column(db.Integer, primary_key = True, autoincrement = True)
     firstName = db.Column(db.String(255), nullable = False)
     lastName = db.Column(db.String(255), nullable = False)
     email = db.Column(db.String(255), nullable = False, unique = True)
@@ -79,7 +79,7 @@ class Account(UserMixin, db.Model) :
         
 
 #Games class
-class Game() :
+class Game(db.Model) :
     """
     Game class
     ---------------
@@ -106,7 +106,7 @@ class Game() :
         return self.name
 
 
-class Theme() :
+class Theme(db.Model) :
     """
     Theme class
     -------------
@@ -118,7 +118,7 @@ class Theme() :
     associatedGame = db.Column(db.String(255), nullable = False)
 
 
-class Question() :
+class Question(db.Model) :
     """
     Question class
     -----------------
@@ -138,7 +138,7 @@ class Question() :
     associatedTheme = db.Column(db.String(255), nullable = False)
 
 
-class Session() :
+class Session(db.Model) :
     """
     Session class
     ---------------
@@ -152,7 +152,7 @@ class Session() :
     status = db.Column(db.String(255), nullable = False)
 
 
-class Answer() :
+class Answer(db.Model) :
     """
     Answer class
     ---------------

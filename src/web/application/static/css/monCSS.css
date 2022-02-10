@@ -1,3 +1,82 @@
+/*All the css function*/
+
 body {
+    color : dark;
+    text-align : center;
+}
+
+.nav {
+    border : 1px solid dark;
+    font-size : 40px;
+}
+
+.container {
+    border : 1px solid dark;
+}
+
+h1 {
+    padding-top : 40px;
+    font-size : 80px;
+    color : green;
+}
+
+.loginForm input,
+.registerForm input,
+.editForm input {
+    display: block;
+    margin-bottom: 10px;
+    border-radius: 3px;
+}
+
+.entree {
+    padding: 5px;
+    /*Soften transition between the different states*/
+    transition: all 0.5s ease;
+}
+
+/*Put the background in a certain color when we put our mouse on it*/
+.entree :hover {
+    background-color: pastelblue;
+}
+
+/*Some characteristics when we click on a part of the form*/
+.entree :focus {
+    border: 2px solid dark;
+}
+
+.username,
+.password,
+.confirmPassword,
+.firstname,
+.name,
+.email {
+    background-repeat: no-repeat;
+    background-position: 5px 15px;
+    padding-left: 25px;
+    background-size: 18px;
+}
+
+.username,
+.firstname,
+.name,
+.email {
+    background-image: url('https://static.thenounproject.com/png/464789-200.png');
+}
+
+.password,
+.confirmPassword {
+    background-image: url('https://toppng.com/uploads/preview/this-is-a-graphic-reation-of-a-pad-lock-username-and-password-icon-115534595184fsadfncq6.png');
+}
+
+.bouton {
+    font-size: 20px;
+    background-color: lightgreen;
+    border: 1px solid dark;
+    color: dark;
+}
+
+.bouton :hover {
+    background-color: lightgrey;
     color: green;
+    transition: all 0.5s ease;
 }

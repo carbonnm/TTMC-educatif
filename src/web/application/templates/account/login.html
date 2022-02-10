@@ -1,5 +1,9 @@
-{% extends "base.html" %}
-{% block login %}active{% endblock %}
+<!--Inheritance-->
+{% extends 'base/base.html' %}
+
+{% block login %}
+    active
+{% endblock login %}
 
 {% block content %}
     <h2>Page de LogIn</h2>
@@ -9,7 +13,7 @@
             {{ form.csrf_token }}
 
             <!--Username-->
-            <div class = "form-group"> 
+            <div class = "entree username"> 
                 {{ form.username(placeholder = form.username.label.text, class = "form-control") }} </br>
                 {% if form.username.errors %} {%for error in form.username.errors %}
                     {{ message }}
@@ -17,7 +21,7 @@
             </div>
 
             <!--Password-->
-            <div class = "form-group">
+            <div class = "entree password">
                 {{ form.password(placeholder = form.password.label.text, class = "form-control") }} </br>
                 {% if form.password.errors %} {% for error in form.password.errors %}
                     {{ message }}
@@ -26,7 +30,7 @@
 
             <!--Submittion-->
             <div class = "row d-flex justify-content-center">
-                {{ form.submit(class="btn btn-primary") }}
+                {{ form.submit(class = "bouton") }}
             </div>
         </form>
     </div>
