@@ -1,0 +1,40 @@
+{% extends 'base/default.html' %}
+
+{% block gcreation %}
+    active
+{% endblock gcreation %}
+
+{% block content %}
+
+    <h2>Creation d'une partie de TTMC</h2>
+    <div class = "row d-flex justify-content-center">
+        <form method = "POST" action = "/createGame" novalidate>
+            {{ form.csrf_token }}
+
+            <!--Name of the game-->
+            <div class = "entree nameGame">
+                {{ form.gameName(placeholder = form.gameName.label.text, class = "form-control") }} </br>
+                {% if form.gameName.errors %} {%for error in form.gameName.errors %}
+                    {{ message }}
+                {% endfor %}{% endif %}
+            </div>
+
+            <!--Number of themes of the game-->
+            <div class = "entree nbThemes">
+                {{ form.nbThemes(placeholder = form.nbThemes.label.text, class = "form-control") }} </br>
+                {% if form.nbThemes.errors %} {%for error in form.nbThemes.errors %}
+                    {{ message }}
+                {% endfor %}{% endif %}
+            </div>
+
+            <!--Number of questions of the game-->
+            <div class = "entree nbQuestions">
+                {{ form.nbQuestions(placeholder = form.nbQuestions.label.text, class = "form-control") }} </br>
+                {% if form.nbQuestions.errors %} {%for error in form.nbQuestions.errors %}
+                    {{ message }}
+                {% endfor %}{% endif %}
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

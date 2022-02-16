@@ -3,7 +3,8 @@ $('#url').focus();
 $('#url').select();
 
 function enterURL() {
-    if ($('#url').val() === "") {
-        aler('Veuillez rentrer un URL Valide')
+    if ($('#urlSearch').val() === "") {
+        alert('Veuillez rentrer un URL Valide')
     }
 }
+enterURL();

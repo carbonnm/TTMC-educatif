@@ -1,0 +1,48 @@
+{% extends 'base/default.html' %}
+
+{% block content %}
+
+    <h2>Correction de la question :</h2>
+    <div class = "card">
+        xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    </div>
+    <h3>Voici la bonne réponse </h3>
+    <table class = "table table-striped table-sm">
+        <thead>
+            <tr>
+                <th scope = "col">N°</th>
+                <th scope = "col">Reponse possible</th>
+                <th scope = "col">Votre choix</th>
+                <th scope = "col">Bonne reponse</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    A
+                </td>
+                <td>
+                    xxxxxxxxxxxx
+                </td>
+                <td>
+                    <a class = "btn btn-warning" href = {{ url_for('correction') }}>Choisir cette reponse</a>
+                </td>
+                <td>
+                    <a class "btn btn-success">Bonne reponse</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class = "card">
+        <div class = "card-title">
+            Nombre de points gagnes :
+        </div>
+        <div class = "card-content">
+            xxxxxxxxxxxx
+        </div>
+    </div>
+
+    <a href = {{ url_for('podium') }} class = "bouton">Voir le classement</a>
+
+{% endblock %}

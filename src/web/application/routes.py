@@ -175,6 +175,30 @@ def editMDP():
         return render_template("profile/editMDP.html", form=form)
 
 
+@app.route("/enterUsername")
+def enterUsername() :
+    """
+    Allows the players who don't have an account to 
+    """
+    return render_template("game/username.html")
+
+
+@app.route("/loadGame")
+def loadGame() :
+    """
+    Simple function that will display a loading page for a few minutes.
+    """
+    return render_template("game/loading.html")
+
+
+@app.route("/explainGame")
+def explainGame() :
+    """
+    Function that will return the template that explains people the rules of the game.
+    """
+    return render_template("game/explainGame.html")
+
+
 @app.route("/createGame", methods =["GET", "POST"])
 @login_required
 def createGame():
@@ -197,6 +221,35 @@ def accessGame() :
         return redirect(url_for("login"))
 
 
-@app.route("/game")
-def game():
-    return render_template('game.html')
+@app.route("/displayTheme")
+def displayTheme() :
+    """
+    Function that display the themes and ask the player which difficulty he wants.
+    """
+    return render_template('game/theme.html')
+
+
+@app.route("/question")
+def question() :
+    """
+    Function that shows the player the question asked and ask him an answer.
+    This will be displayed as a QCM.
+    """
+    return render_template('game/question.html')
+
+
+@app.route("/correction")
+def correction() :
+    """
+    Will display the correction of the correct answer.
+    The player will know how much points he earns.
+    """
+    return render_template('game/correction.html')
+
+
+@app.route("/podium")
+def podium() :
+    """
+    Display of a temporary podium between the players.
+    """
+    return render_template('game/podium.html')

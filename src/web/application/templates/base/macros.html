@@ -1,0 +1,21 @@
+{% macro ls(games) %}
+
+    {% for game in games %}
+        <tr>
+            <td>
+                {{ game.name }}
+            </td>
+            <td>
+                {{ game.nbThemes }}
+            </td>
+            <td>
+                {{ game.nbQuestions }}
+            </td>
+            <td>
+                <a class = "btn btn-success btn-sm" href = {{ url_for('viewGame')}}>Voir</a>
+                <a class = "btn btn-info btn-sm" href = {{ url_for('editGame') }}>Modifier</a>
+                <a class = "btn btn-warning btn-sm" href = {{ url_for('deleteGame') }}>Supprimer</a>
+            </td>
+        </tr>
+    {% endfor %}
+{% endmacro %}

@@ -6,13 +6,11 @@
 
 {% block content %}
 
-    <h1>Tu Te Mets Combien ?</h1>
-    <h2>Salut {{ current_user.username }}</h2>
     {{ super() }}
 
     <h3>Rejoindre une partie : </h3>
     <div class = "navbar-nav">
         <input id = "urlSearch" class = "form-control d-inline" type = "search" placeholder = "Entrez une URL de partie ici">
-        <button class = "bouton" id = "joinGame">Rejoindre</button>
+        <a class = "bouton" href = {{ url_for('enterUsername') }}>Rejoindre</a>
     </div>
 {% endblock %}

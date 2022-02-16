@@ -1,0 +1,29 @@
+{% extends 'base/default.html' %}
+
+{% block content %}
+
+    <br>
+    <h2>Bienvenue {{ current_user.username }} !</h2>
+    {{ super() }}
+    <div class = "left_txt">
+        <div class = "card"> 
+            <div class = "card-title">
+                Règles du jeu :
+            <div>
+            <div class = "card-body">
+                Le but d'une partie de TTMC est d'amasser le plus de points possibles. <br>
+                Pour gagner des points, il suffit de donner la bonne réponse aux questions qui vous seront posées lors de la partie. <br>
+                Plusieurs thèmes seront abordés au cours de cette partie. <br>
+                Pour chaque thème, différents niveaux de difficulté de questions vous seront 
+                proposés. <br>
+                Choisissez la difficulté avec laquelle vous vous sentez à l'aise en sachant qu'au 
+                plus la difficulté est élevée, au plus vous gagnez des points si vous donnez la 
+                bonne réponse. <br>
+                Si la réponse donnée est mauvaise, aucun point n'est donné.<br>
+            </div>
+        </div>
+    </div>
+
+    <a href = {{ url_for('displayTheme') }} class = "bouton">J'ai compris !</a>
+    
+{% endblock %}

@@ -17,6 +17,10 @@ app = Flask(__name__)
 app.config.from_object(Config)
 
 login_manager = LoginManager(app)
+login_manager.login_view = "login"
+login_manager.login_message_category = "warning"
+login_manager.login_message = "You cannot acces to this page. Please log in."
+login_manager.session_protection = 'strong'
 
 #Database part :
 db = SQLAlchemy(app)

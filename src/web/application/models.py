@@ -12,7 +12,7 @@ class Player(UserMixin, db.Model) :
     They still needs to be identified with a username.
     """
     __tablename__ = 'player'
-    IDPlayer = db.Column(db.Integer, primary_key = True, autoincrement = True)
+    id = db.Column(db.Integer, primary_key = True, autoincrement = True)
     username = db.Column(db.String(255), nullable = False)
     #Maybe a link with an account here ?
 
@@ -25,6 +25,11 @@ class Player(UserMixin, db.Model) :
         """
         return self.username
 
+    def __repr__(self) :
+        """
+        Representation of a player.
+        """
+        return "<Player id : %d, username : %s>" % (self.id, self.username)
 
 class Account(UserMixin, db.Model) :
     """
@@ -75,7 +80,7 @@ class Account(UserMixin, db.Model) :
         ----------
         Representation of an user.
         """
-        return "<User id : %d, username : %s, lastName : %s, firstName : %s, email : %s>" %(self.IDAccount, self.username, self.lastName, self.firstName, self.email)
+        return "<User id : %d, username : %s, lastName : %s, firstName : %s, email : %s>" %(self.id, self.username, self.lastName, self.firstName, self.email)
         
 
 #Games class
@@ -88,7 +93,7 @@ class Game(db.Model) :
     """
     __tablename__ = 'game'
 
-    IDGame = db.Column(db.Integer, primary_key = True, autoincrement = True)
+    id = db.Column(db.Integer, primary_key = True, autoincrement = True)
     name = db.Column(db.String(255), nullable = False)
     nbThemes = db.Column(db.Integer, nullable = False)
     nbQuestions = db.Column(db.Integer, nullable = False)
@@ -104,6 +109,12 @@ class Game(db.Model) :
         The name of the game.
         """
         return self.name
+    
+    def __repr__(self) :
+        """
+        Representation of a game.
+        """
+        return "<Game id : %s, name : %s, nbThemes : %d, nbQuestions : %d, URL : %d, creator : %s>" % (self.id, self.name, self.nbThemes, self.nbQuestions, self.url, self.creator)
 
 
 class Theme(db.Model) :
@@ -112,11 +123,16 @@ class Theme(db.Model) :
     -------------
     Class that countains informations related to the themes, that are linked to a specific game.
     """
-    IDTheme = db.Column(db.Integer, primary_key = True, autoincrement = True)
+    id = db.Column(db.Integer, primary_key = True, autoincrement = True)
     nameTheme = db.Column(db.String(255), nullable = False)
     #Necessity to make a link here ! 
     associatedGame = db.Column(db.String(255), nullable = False)
 
+    def __repr__(self) :
+        """
+        Representation of a theme
+        """
+        return "<Theme id : %d, nameTheme : %s, associatedGame : %s>" % (self.id, self.nameTheme, self.associatedGame)
 
 class Question(db.Model) :
     """
@@ -125,7 +141,7 @@ class Question(db.Model) :
     Class that countains informations related to the questions, linked to a specific theme
     (and therefore a specific game too).
     """
-    IDQuestion = db.Column(db.Integer, primary_key = True, autoincrement = True)
+    id = db.Column(db.Integer, primary_key = True, autoincrement = True)
     enonce = db.Column(db.String(255), nullable = False)
     reponseA = db.Column(db.String(255), nullable = False)
     reponseB = db.Column(db.String(255), nullable = False)
@@ -137,6 +153,12 @@ class Question(db.Model) :
     #Neccessity to make a link here !!!
     associatedTheme = db.Column(db.String(255), nullable = False)
 
+    def __repr__(self) :
+        """
+        Representation of a question.
+        """
+        return "<Question id : %d, enonce : %s, reponseA : %s, reponseB : %s, reponseC : %s, reponseD : %s, bonneReponse : %s, difficultyLevel : %d, nbPoints : %d, associatedTheme : %s>" % (self.id, self.enonce, self.reponseA, self.reponseB, self.reponseC, self.reponseD, self.bonneReponse, self.difficultyLevel, self.nbPoints, self.associatedTheme)
+
 
 class Session(db.Model) :
     """
@@ -146,10 +168,16 @@ class Session(db.Model) :
     This is explained by the fact that a game can be played multiple times.
     That's why we used different sessions, even tho they can concern the same game somtimes.
     """
-    IDSession = db.Column(db.Integer, primary_key = True, autoincrement = True)
+    id = db.Column(db.Integer, primary_key = True, autoincrement = True)
     #Necessity to make a link here
     gameAssociated = db.Column(db.String(255), nullable = False)
     status = db.Column(db.String(255), nullable = False)
+
+    def __repr__(self) :
+        """
+        Representation of a session
+        """
+        return "<Session id : %d, gameAssociated : %s, status : %s>" % (self.id, self.gameAssociated, self.status)
 
 
 class Answer(db.Model) :
@@ -158,7 +186,7 @@ class Answer(db.Model) :
     ---------------
     Class that concerns the answers given by a certain player to a certain question.
     """
-    IDAnswer = db.Column(db.Integer, primary_key = True, autoincrement = True)
+    id = db.Column(db.Integer, primary_key = True, autoincrement = True)
     #Necessity to make a link here !!!
     usernameAssociated = db.Column(db.String(255), nullable = False)
     #Necessity to make a link here !!!
@@ -166,6 +194,12 @@ class Answer(db.Model) :
     answerGiven = db.Column(db.String(255), nullable = False)
     #Necessity to make a link here !!!
     sessionAssociated = db.Column(db.String(255), nullable = False)
+
+    def __repr__(self) :
+        """
+        Representation of an answer.
+        """
+        return "<Answer id : %d, usernameAssociated : %s, enonce : %s, answerGiven : %s, sessionAssociated : %s>" % (self.id, self.usernameAssociated, self.enonce, self.answerGiven, self.sessionAssociated)
 
 
 #The DB part :
