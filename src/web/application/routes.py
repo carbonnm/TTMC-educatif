@@ -208,6 +208,7 @@ def createGame():
     
     form = PartieForm()
     #if form.validate_on_submit() :
+    return render_template('teacher/createGame.html',)
 
 
 @app.route("/accessGame")
@@ -219,6 +220,53 @@ def accessGame() :
     """
     if not current_user.is_authenticated :
         return redirect(url_for("login"))
+    return render_template('teacher/accessGame.html')
+
+
+@app.route("/editGame")
+@login_required
+def editGame() :
+    """
+    Allows an user who has an account and has created games to edit them.
+    """
+    return render_template('teacher/editGame.html')
+
+
+@app.route("/startSynchro")
+@login_required
+def startSynchro() :
+    """
+    Starts the game (synchronous start).
+    """
+    return render_template('teacher/startSynchro.html')
+
+
+@app.route("/startAsync")
+@login_required
+def startAsync() :
+    """
+    Starts the game (asynchronous start).
+    """
+    return render_template('teacher/startAsync.html')
+
+
+@app.route("/deleteGame")
+@login_required
+def deleteGame() :
+    """
+    Allows an user to delete his own games.
+    """
+    return render_template('teacher/deleteGame.html')
+
+
+@app.route("/accessResults")
+@login_required
+def accessResults() :
+    """
+    Shows to the creator of the game the results that have been made previously.
+    (Only if there are some).
+    """
+    return render_template('teacher/accessResults.html')
 
 
 @app.route("/displayTheme")
@@ -253,3 +301,16 @@ def podium() :
     Display of a temporary podium between the players.
     """
     return render_template('game/podium.html')
+
+
+@app.route("/teacherScreen")
+def teacherScreen() :
+    """
+    Display of what a teacher can say :
+        - make a new game
+        - view their games
+        - editing them
+        - delete them
+        -...
+    """
+    return render_template('teacher/teacherScreen.html')

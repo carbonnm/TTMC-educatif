@@ -1,9 +1,10 @@
 {% extends "base/default.html" %}
 
 {% block content %}
-    
+    <br>
     <h2>Veuillez nous donnez un pseudo avant de rejoindre la partie.</h2>
-    <input type = "text" id = "pseudo" required minlength = "2" placeholder = "Pseudo">
+    <br>
+    <input type = "text" id = "pseudo" required minlength = "2" placeholder = "Pseudo"><br><br>
     <a href = {{ url_for('loadGame') }} class = "bouton">Valider et rejoindre la partie</a>
 
 {% endblock %}

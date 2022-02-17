@@ -4,32 +4,6 @@ from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
 from application import login_manager
 
-class Player(UserMixin, db.Model) :
-    """
-    Player class
-    ---------------
-    This class is made for people that will not have an account.
-    They still needs to be identified with a username.
-    """
-    __tablename__ = 'player'
-    id = db.Column(db.Integer, primary_key = True, autoincrement = True)
-    username = db.Column(db.String(255), nullable = False)
-    #Maybe a link with an account here ?
-
-    def getUsername(self) :
-        """
-        Getter of the username.
-        Return : 
-        ----------
-        Username
-        """
-        return self.username
-
-    def __repr__(self) :
-        """
-        Representation of a player.
-        """
-        return "<Player id : %d, username : %s>" % (self.id, self.username)
 
 class Account(UserMixin, db.Model) :
     """
@@ -82,6 +56,34 @@ class Account(UserMixin, db.Model) :
         """
         return "<User id : %d, username : %s, lastName : %s, firstName : %s, email : %s>" %(self.id, self.username, self.lastName, self.firstName, self.email)
         
+
+class Player(db.Model) :
+    """
+    Player class
+    ---------------
+    This class is made for people that will not have an account.
+    They still needs to be identified with a username.
+    """
+    __tablename__ = 'player'
+    id = db.Column(db.Integer, primary_key = True, autoincrement = True)
+    username = db.Column(db.String(255), nullable = False)
+    #Maybe a link with an account here ?
+
+    def getUsername(self) :
+        """
+        Getter of the username.
+        Return : 
+        ----------
+        Username
+        """
+        return self.username
+
+    def __repr__(self) :
+        """
+        Representation of a player.
+        """
+        return "<Player id : %d, username : %s>" % (self.id, self.username)
+
 
 #Games class
 class Game(db.Model) :

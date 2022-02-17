@@ -2,7 +2,8 @@
 
 {% block content %}
 
-    <h2>Classement entre joueurs : </h2>
+    <br>
+    <h2>Classement entre joueurs : </h2><br>
     <table class="table table-striped table-sm">
         <thead>
             <tr>
@@ -25,7 +26,7 @@
             </tr>
         </tbody>
     </table>
-
-    <a href = {{ url_for('theme') }} class = "bouton">Acceder au nouveau theme</a>
+    <br>
+    <a href = {{ url_for('displayTheme') }} class = "bouton">Acceder a un nouveau theme</a>
 
 {% endblock %}

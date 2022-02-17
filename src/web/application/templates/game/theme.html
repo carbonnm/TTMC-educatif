@@ -1,15 +1,22 @@
 {% extends "base/default.html" %}
 
 {% block content %}
-
-    <h2>Voici le theme de la prochaine question :</h2>
+    <br>
+    <h2>Voici le theme de la prochaine question :</h2><br>
     <div class = "card">
         xxxxxxxxxxxxx
     </div>
+    <br><br>
     <h3>Choisissez la difficulte avec laquette vous etes la plus a l'aise en fonction de ce theme</h3>
     <p>Attention, au plus le chiffre est eleve, au plus la difficulte l'est.</p>
     <div class = "text_left">
-        <input id = "themePick" class = "form-control d-inline" placeholder = "Choisissez ici">
+        <select id = "themePick" class = "form-control d-inline" placeholder = "Choisissez ici">
+            <option value = "1">1</option>
+            <option value = "2">2</option>
+            <option value = "3">3</option>
+            <option value = "4">4</option>
+            <option value = "5">5</option>
+        </select>
         <a class = "bouton" id = "pickThemeButton" href = {{ url_for('question') }}>Choisir</a>
     </div>
 
