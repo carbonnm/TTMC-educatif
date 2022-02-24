@@ -1,0 +1,60 @@
+{% extends 'base/default.html' %}
+
+{% block content %}
+    <br>
+    <h2>Creation des questions</h2>
+    <div class = "row d-flex justify-content-center">
+        <form method = "POST" action = "/createQuestions" novalidate>
+            {{ form.csrf_token }}
+
+            <div class = "entree enonce">
+                {{ form.enonce(placeholder = form.enonce.label.text, class = "form-control") }} </br>
+                {% if form.enonce.errors %} {%for error in form.enonce.errors %}
+                    {{ message }}
+                {% endfor %}{% endif %}
+            </div>
+
+            <div class = "entree reponseA">
+                {{ form.reponseA(placeholder = form.reponseA.label.text, class = "form-control") }} </br>
+                {% if form.reponseA.errors %} {%for error in form.reponseA.errors %}
+                    {{ message }}
+                {% endfor %}{% endif %}
+            </div>
+
+            <div class = "entree reponseB">
+                {{ form.reponseB(placeholder = form.reponseB.label.text, class = "form-control") }} </br>
+                {% if form.reponseB.errors %} {%for error in form.reponseB.errors %}
+                    {{ message }}
+                {% endfor %}{% endif %}
+            </div>
+
+            <div class = "entree reponseC">
+                {{ form.reponseC(placeholder = form.reponseC.label.text, class = "form-control") }} </br>
+                {% if form.reponseC.errors %} {%for error in form.reponseC.errors %}
+                    {{ message }}
+                {% endfor %}{% endif %}
+            </div>
+
+            <div class = "entree reponseD">
+                {{ form.reponseD(placeholder = form.reponseD.label.text, class = "form-control") }} </br>
+                {% if form.reponseD.errors %} {%for error in form.reponseD.errors %}
+                    {{ message }}
+                {% endfor %}{% endif %}
+            </div>
+
+            <div class = "entree bonneReponse">
+                {{ form.bonneReponse(placeholder = form.bonneReponse.label.text, class = "form-control") }} </br>
+                {% if form.bonneReponse.errors %} {%for error in form.bonneReponse.errors %}
+                    {{ message }}
+                {% endfor %}{% endif %}
+            </div>
+
+            <!--Submittion-->
+            <div class = "row d-flex justify-content-center">
+                {{ form.submit(class = "bouton") }}
+            </div>
+            
+        </form>
+    </div>
+
+{% endblock %}

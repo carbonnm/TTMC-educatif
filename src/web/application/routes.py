@@ -17,6 +17,7 @@ from flask_login import logout_user
 
 from application.forms import *
 from application.models import *
+from werkzeug.security import check_password_hash
 
 
 @app.errorhandler(404)
@@ -44,7 +45,7 @@ def homepage():
     return render_template('index.html')
 
 @app.route("/login", methods=["GET", "POST"])
-def login() :
+def login():
     """
     Login function.
     Redirection to the login page.
@@ -91,10 +92,9 @@ def register() :
     form = RegisterForm()
     if form.validate_on_submit():
         #Add the user
-        new = Account(firstName = form.firstName.data, lastName = form.lastName.data, email = form.email.data, username = form.username.data, password = generate_password_hash(form.password.data))
+        new = Account(username = form.username.data, lastName = form.lastName.data, firstName = form.firstName.data, email = form.email.data, password = generate_password_hash(form.password.data))
         db.session.add(new)
         db.session.commit()
-        print("youhou")
         login_user(new)
         return redirect(url_for("homepage"))
 
@@ -202,13 +202,73 @@ def explainGame() :
 @app.route("/createGame", methods =["GET", "POST"])
 @login_required
 def createGame():
+    """
+    Creation of a new game.
+    Will ask : - a name
+               - a number of themes
+               - a number of questions/difficulties
+    PS : for the moment, the URL and the creator are hardcoded.
+    """
     
     if not current_user.is_authenticated :
         return redirect(url_for("login"))
     
     form = PartieForm()
-    #if form.validate_on_submit() :
-    return render_template('teacher/createGame.html',)
+    if form.validate_on_submit():
+        newGame = Game(gameName = form.gameName.data, nbThemes = form.nbThemes.data, nbQuestions = form.nbQuestions.data, URL = "azerty", creator = "Marie Carbonnelle")
+        db.session.add(newGame)
+        db.session.commit()
+        return redirect(url_for('createThemes'))
+    return render_template('teacher/createGame.html', form = form)
+
+
+@app.route("/createThemes", methods =["GET", "POST"])
+@login_required
+def createThemes() :
+    """
+    Creation of the different themes.
+    Only ask for the name of the theme.
+    """
+    if not current_user.is_authenticated :
+        return redirect(url_for("login"))
+    
+    form = ThemeForm()
+    if form.validate_on_submit():
+        newTheme = Theme(themeName = form.themeName.data, associatedGame = "forLater")
+        db.session.add(newTheme)
+        db.session.commit()
+        return redirect(url_for('createQuestions'))
+    return render_template('teacher/createThemes.html', form = form)
+
+
+@app.route("/createQuestions", methods=["GET", "POST"])
+@login_required
+def createQuestions() :
+    """
+    Creation of the questions.
+    Will ask : - a question
+               - 4 different possible answers
+               - the correct answer
+    """
+    if not current_user.is_authenticated :
+        return redirect(url_for("login"))
+    
+    form = QuestionForm()
+    if form.validate_on_submit():
+        newQuestion = Question(enonce = form.enonce.data, reponseA = form.reponseA.data, reponseB = form.reponseB.data, reponseC = form.reponseC.data, reponseD = form.reponseD.data, bonneReponse = form.bonneReponse.data, difficultyLevel = 3, nbPoints = 3, associatedTheme = "theme")
+        db.session.add(newQuestion)
+        db.session.commit()
+        return redirect(url_for('gameIsCreated'))
+    return render_template('teacher/createQuestions.html', form = form)
+
+
+@app.route("/gameIsCreated")
+@login_required
+def gameIsCreated() :
+    """
+    Create the game and shows the url to share for that game.
+    """
+    return render_template('teacher/gameIsCreated.html')
 
 
 @app.route("/accessGame")

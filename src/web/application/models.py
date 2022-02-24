@@ -9,17 +9,17 @@ class Account(UserMixin, db.Model) :
     """
     Account class
     --------------
-    This class will contain all the informations about the users who have an account.
+    This class will contain all the information about the users who have an account.
     """
     #Initialisation
     __tablename__ = 'account'
 
     #DB
     id = db.Column(db.Integer, primary_key = True, autoincrement = True)
-    firstName = db.Column(db.String(255), nullable = False)
-    lastName = db.Column(db.String(255), nullable = False)
-    email = db.Column(db.String(255), nullable = False, unique = True)
     username = db.Column(db.String(255), nullable = False, unique = True)
+    lastName = db.Column(db.String(255), nullable = False)
+    firstName = db.Column(db.String(255), nullable = False)
+    email = db.Column(db.String(255), nullable = False, unique = True)
     password = db.Column(db.String(255), nullable = False)
 
     def getUsername(self) :
@@ -29,14 +29,15 @@ class Account(UserMixin, db.Model) :
         ----------
         Username
         """
-        return self.username
+        return self.id
 
     def setPassword(self, password) :
         """
         Setter of the password in the database.
-        We use for that the function generate_password_hash so that the password is crypted in the database. 
+        We use for that the function generate_password_hash so that the password is cripted in the database.
         """
         self.password = generate_password_hash(password)
+        db.session.commit()
     
     def checkPassword(self, password) :
         """
@@ -52,17 +53,18 @@ class Account(UserMixin, db.Model) :
         How users will be represented.
         Return :
         ----------
-        Representation of an user.
+        Representation of a user.
         """
-        return "<User id : %d, username : %s, lastName : %s, firstName : %s, email : %s>" %(self.id, self.username, self.lastName, self.firstName, self.email)
-        
+        return "<User id : %d, username : %s, lastName : %s, firstName : %s, email : %s>" % (self.id, self.username, self.lastName, self.firstName, self.email)
+    
 
+    
 class Player(db.Model) :
     """
     Player class
     ---------------
     This class is made for people that will not have an account.
-    They still needs to be identified with a username.
+    They still need to be identified with a username.
     """
     __tablename__ = 'player'
     id = db.Column(db.Integer, primary_key = True, autoincrement = True)
@@ -90,13 +92,13 @@ class Game(db.Model) :
     """
     Game class
     ---------------
-    This class will contain all the informations related to a specific game.
+    This class will contain all the information related to a specific game.
     ie : its name, the number of themes, the number of questions.
     """
     __tablename__ = 'game'
 
     id = db.Column(db.Integer, primary_key = True, autoincrement = True)
-    name = db.Column(db.String(255), nullable = False)
+    gameName = db.Column(db.String(255), nullable = False)
     nbThemes = db.Column(db.Integer, nullable = False)
     nbQuestions = db.Column(db.Integer, nullable = False)
     URL = db.Column(db.String(255), nullable = False)
@@ -110,23 +112,26 @@ class Game(db.Model) :
         ---------
         The name of the game.
         """
-        return self.name
+        return self.id
     
     def __repr__(self) :
         """
         Representation of a game.
         """
-        return "<Game id : %s, name : %s, nbThemes : %d, nbQuestions : %d, URL : %d, creator : %s>" % (self.id, self.name, self.nbThemes, self.nbQuestions, self.url, self.creator)
+        return "<Game id : %s, gameName : %s, nbThemes : %d, nbQuestions : %d, URL : %s, creator : %s>" % (self.id, self.name, self.nbThemes, self.nbQuestions, self.URL, self.creator)
 
 
 class Theme(db.Model) :
     """
     Theme class
     -------------
-    Class that countains informations related to the themes, that are linked to a specific game.
+    Class that contains information related to the themes, that are linked to a specific game.
     """
+
+    __tablename__ = 'theme'
+
     id = db.Column(db.Integer, primary_key = True, autoincrement = True)
-    nameTheme = db.Column(db.String(255), nullable = False)
+    themeName = db.Column(db.String(255), nullable = False)
     #Necessity to make a link here ! 
     associatedGame = db.Column(db.String(255), nullable = False)
 
@@ -140,9 +145,12 @@ class Question(db.Model) :
     """
     Question class
     -----------------
-    Class that countains informations related to the questions, linked to a specific theme
+    Class that contains information related to the questions, linked to a specific theme
     (and therefore a specific game too).
     """
+
+    __tablename__ = 'question'
+
     id = db.Column(db.Integer, primary_key = True, autoincrement = True)
     enonce = db.Column(db.String(255), nullable = False)
     reponseA = db.Column(db.String(255), nullable = False)
@@ -170,6 +178,9 @@ class Session(db.Model) :
     This is explained by the fact that a game can be played multiple times.
     That's why we used different sessions, even tho they can concern the same game somtimes.
     """
+
+    __tablename__ = 'session'
+
     id = db.Column(db.Integer, primary_key = True, autoincrement = True)
     #Necessity to make a link here
     gameAssociated = db.Column(db.String(255), nullable = False)
@@ -188,6 +199,9 @@ class Answer(db.Model) :
     ---------------
     Class that concerns the answers given by a certain player to a certain question.
     """
+
+    __tablename__ = 'answer'
+
     id = db.Column(db.Integer, primary_key = True, autoincrement = True)
     #Necessity to make a link here !!!
     usernameAssociated = db.Column(db.String(255), nullable = False)
@@ -210,7 +224,8 @@ db.create_all()
 
 db.session.commit()
 
+
 # callback to reload the user object
 @login_manager.user_loader
 def load_user(userID):
-    return Player.query.get(int(userID))
+    return Account.query.get(int(userID))

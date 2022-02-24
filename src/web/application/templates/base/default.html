@@ -10,16 +10,11 @@
                 <!--Align averything with the end.-->
                 <!--Navigation option can be associated to a certain jinja block content.-->
                 <div class = "navbar-nav me-auto">
-                    {% if current_user.is_authenticated %}
-                        <a class = "nav-link {% block home %}{% endblock  %}" href = '/'>Page d'accueil</a>
-                        <a class = "nav-link {% block gcreation %}{% endblock %}" href = {{ url_for('createGame') }}>Nouvelle partie</a>
-                        <a class = "nav-link {% block gaccess %}{% endblock %}" href = {{ url_for('accessGame') }}>Voir mes parties</a>
-					    <a class = "nav-link {% block profile %}{% endblock %}" href = {{ url_for('profile') }}>Mon Profil</a>
-                        <a class = "nav-link" href = {{ url_for('logout') }}>Se deconnecter</a>
-                    {% else %}
-                        <a class = "nav-link {% block login %}{% endblock %}" href = {{ url_for('login') }}>Se connecter</a>
-                        <a class = "nav-link {% block register %}{% endblock %}" href = {{ url_for('register') }}>Creer un compte</a>
-                    {% endif %}
+                    <a class = "nav-link {% block home %}{% endblock  %}" href = '/'>Page d'accueil</a>
+                    <a class = "nav-link {% block gcreation %}{% endblock %}" href = {{ url_for('createGame') }}>Nouvelle partie</a>
+                    <a class = "nav-link {% block gaccess %}{% endblock %}" href = {{ url_for('accessGame') }}>Voir mes parties</a>
+					<a class = "nav-link {% block profile %}{% endblock %}" href = {{ url_for('profile') }}>Mon Profil</a>
+                    <a class = "nav-link" href = {{ url_for('logout') }}>Se deconnecter</a>
                 </div>
             </div>
         </div>
