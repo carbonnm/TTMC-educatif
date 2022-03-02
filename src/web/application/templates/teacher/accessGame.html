@@ -20,18 +20,20 @@
         </thead>
         <br>
         <tbody>
-            <tr>
-                <td>
-                    Nom de la partie xxxx
-                </td>
-                <td>
-                    <a class = "btn btn-primary" href = {{ url_for('startSynchro') }}>Lancer en synchrone</a>
-                    <a class = "btn btn-primary" href = {{ url_for('startAsync') }}>Lancer en asynchrone</a>
-                    <a class = "btn btn-primary" href = {{ url_for('accessResults') }}>Voir resultats</a>
-                    <a class = "btn btn-warning" href = {{ url_for('editGame', id = game.id) }}>Modifier</a>
-                    <a class = "btn btn-danger" href = {{ url_for('deleteGame', id = game.id) }}>Supprimer</a>
-                </td>
-            </tr>
+            {% for game in games %}
+                <tr>
+                    <td>
+                        Nom de la partie xxxx
+                    </td>
+                    <td>
+                        <a class = "btn btn-primary" href = {{ url_for('startSynchro') }}>Lancer en synchrone</a>
+                        <a class = "btn btn-primary" href = {{ url_for('startAsync') }}>Lancer en asynchrone</a>
+                        <a class = "btn btn-primary" href = {{ url_for('accessResults') }}>Voir resultats</a>
+                        <a class = "btn btn-warning" href = {{ url_for('editGame', id = game.id) }}>Modifier</a>
+                        <a class = "btn btn-danger" href = {{ url_for('deleteGame', id = game.id) }}>Supprimer</a>
+                    </td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 
