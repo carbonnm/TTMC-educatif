@@ -258,8 +258,17 @@ def createQuestions() :
         newQuestion = Question(enonce = form.enonce.data, reponseA = form.reponseA.data, reponseB = form.reponseB.data, reponseC = form.reponseC.data, reponseD = form.reponseD.data, bonneReponse = form.bonneReponse.data, difficultyLevel = 3, nbPoints = 3, associatedTheme = "theme")
         db.session.add(newQuestion)
         db.session.commit()
-        return redirect(url_for('gameIsCreated'))
+        return redirect(url_for('creationGameLoading'))
     return render_template('teacher/createQuestions.html', form = form)
+
+
+@app.route("/creationGameLoading")
+@login_required
+def creationGameLoading() :
+    """
+    Quick animation of the creation of the game.
+    """
+    return render_template('teacher/creationGameLoading.html')
 
 
 @app.route("/gameIsCreated")
@@ -283,12 +292,28 @@ def accessGame() :
     return render_template('teacher/accessGame.html')
 
 
-@app.route("/editGame")
+@app.route("/editGame/<int:id>", methods=["GET", "POST"])
 @login_required
 def editGame() :
     """
     Allows an user who has an account and has created games to edit them.
     """
+    game = Game.query.filter_by(id = id).first()
+    form = PartieForm()
+
+    if form.validate_on_submit():
+        game.gameName = form.gameName.data
+        game.nbThemes = form.nbThemes.data
+        game.nbQuestions = form.nbQuestions.data
+
+        db.session.commit()
+        return redirect(url_for('accessGame'))
+
+    else :
+        form.gameName.data = game.gameName
+        form.nbThemes.data = game.nbThemes
+        form.nbQuestions.data = game.nbQuestions
+
     return render_template('teacher/editGame.html')
 
 
@@ -310,13 +335,16 @@ def startAsync() :
     return render_template('teacher/startAsync.html')
 
 
-@app.route("/deleteGame")
+@app.route("/deleteGame/<int:id>")
 @login_required
 def deleteGame() :
     """
     Allows an user to delete his own games.
     """
-    return render_template('teacher/deleteGame.html')
+    game = Game.query.filter_by(id = id).first()
+    db.session.delete(game)
+    db.session.commit()
+    return redirect(url_for("homepage"))
 
 
 @app.route("/accessResults")
@@ -361,16 +389,3 @@ def podium() :
     Display of a temporary podium between the players.
     """
     return render_template('game/podium.html')
-
-
-@app.route("/teacherScreen")
-def teacherScreen() :
-    """
-    Display of what a teacher can say :
-        - make a new game
-        - view their games
-        - editing them
-        - delete them
-        -...
-    """
-    return render_template('teacher/teacherScreen.html')

@@ -1,13 +1,6 @@
 <!--Inheritance-->
 {% extends 'base/base.html' %}
 
-{% block nav %}
-    <nav class = "nav nav-tabs">
-        <a class = "nav-link active" href = {{ url_for('login') }}> Se connecter </a>
-        <a class = "nav-link" href = {{ url_for('register') }}> Creer un compte </a>
-    </nav>
-{% endblock nav %}
-
 {% block content %}
     <h2>Page de LogIn</h2>
     <div class = "row d-flex justify-content-center">

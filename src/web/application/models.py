@@ -222,7 +222,13 @@ class Answer(db.Model) :
 db.drop_all()
 db.create_all()
 
+
+#Hardcode of my user in the DB (just for convenience)
+utilisateurs = Account(username = "carbonnm", lastName = "Carbonnelle", firstName = "Marie", email = "marie.carbonnelle@student.unamur.be", password = generate_password_hash("Dzhari50"))
+db.session.add(utilisateurs)
+
 db.session.commit()
+
 
 
 # callback to reload the user object

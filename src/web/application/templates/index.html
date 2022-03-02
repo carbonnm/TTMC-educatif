@@ -8,13 +8,14 @@
 
     {{ super() }}
 
-    <h3>Rejoindre une partie : </h3>
+    <h2>Rejoindre une partie : </h2>
+    <br>
     <div>
         <input id = "urlSearch" class = "form-control d-inline" type = "search" placeholder = "Entrez une URL de partie ici">
+        <br>
         <a class = "bouton" href = {{ url_for('enterUsername') }}>Rejoindre</a>
     </div>
     <br>
     <br>
-    <a href = {{ url_for('teacherScreen') }} class = "bouton">Je suis prof</a>
 
 {% endblock %}

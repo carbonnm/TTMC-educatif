@@ -10,6 +10,7 @@
 
     {{ super() }}
     <h2>Mes parties </h2>
+    <br>
     <table class = "table table-striped table-sm">
         <thead>
             <tr>
@@ -17,17 +18,18 @@
                 <th scope = "col">Actions possibles</th>
             </tr>
         </thead>
+        <br>
         <tbody>
             <tr>
                 <td>
                     Nom de la partie xxxx
                 </td>
                 <td>
-                    <a class = "bouton" href = {{ url_for('editGame') }}>Modifier</a>
-                    <a class = "bouton" href = {{ url_for('startSynchro') }}>Lancer en synchrone</a>
-                    <a class = "bouton" href = {{ url_for('startAsync') }}>Lancer en asynchrone</a>
-                    <a class = "bouton" href = {{ url_for('deleteGame') }}>Supprimer</a>
-                    <a class = "bouton" href = {{ url_for('acessResults') }}>Voir resultats</a>
+                    <a class = "btn btn-primary" href = {{ url_for('startSynchro') }}>Lancer en synchrone</a>
+                    <a class = "btn btn-primary" href = {{ url_for('startAsync') }}>Lancer en asynchrone</a>
+                    <a class = "btn btn-primary" href = {{ url_for('accessResults') }}>Voir resultats</a>
+                    <a class = "btn btn-warning" href = {{ url_for('editGame', id = game.id) }}>Modifier</a>
+                    <a class = "btn btn-danger" href = {{ url_for('deleteGame', id = game.id) }}>Supprimer</a>
                 </td>
             </tr>
         </tbody>

@@ -1,0 +1,21 @@
+{% extends 'base/default.html' %}
+
+{% block content %}
+
+    <h2>Modification des informations générales de parties :</h2>
+    <br>
+    <div class = "row d-flex justify-content-center">
+
+        <form method = "POST" action = "/editGame" novalidate>
+            <!--csfr token-->
+            {{ form.csrf_token }}
+            {{ form.gameName.label }} {{ from.gameName(class = "form-control") }} </br>
+            {{ form.nbThemes.label }} {{ form.nbThemes(class = "form-control") }} </br>
+            {{ form.nbQuestions.label }} {{ form.nbQuestions(class = "form-control") }} </br>
+
+            <!--Submittion-->
+            {{ form.submit(class = "btn btn-primary") }}
+        </form>
+    </div>
+
+{% endblock %}

@@ -1,14 +1,16 @@
 {% extends 'base/default.html' %}
 
 {% block content %}
+
     <br>
     <br>
     <br>
-    <h3>Chargement de la partie</h3>
+    <h3>Creation de la partie en cours</h3>
     <div id = "loader" class = "justify-content">
         <div id = "barProgress"></div>
     </div>
     <button onclick = "move()">Click</button>
-    <a href = {{ url_for('explainGame') }} class = "bouton">Je suis pret !</a>
+    <a href = {{ url_for('gameIsCreated') }} class = "bouton">Je suis pret !</a>
     <script src= "/static/js/loading.js" charset = "utf-8"></script>
+
 {% endblock %}

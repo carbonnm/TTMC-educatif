@@ -34,7 +34,9 @@ class usernameForm(FlaskForm) :
     Formulary used to save the username of the person that plays
     if she doesn't have an account.
     """
-    username = StringField('Pseudo', validators = [InputRequired(message = "Entrez le pseudo que vous desirez"), Length(min = 2, message = "Votre pseudo doit faire minimum 2 caracteres")])
+    username = StringField('Pseudo', validators = [InputRequired(message = "Entrez le pseudo que vous desirez")])
+
+    assert username != ""
 
     submit = SubmitField('Valider')
 
@@ -55,12 +57,17 @@ class RegisterForm(FlaskForm) :
     ----------------
     Formulary that the user will have to submit when registering.
     """
-    firstName = StringField('Prenom', validators = [InputRequired(message = "Entrez votre prenom"), Length(min = 2, message = "Votre prenom doit faire 2 lettres minimum")])
-    lastName = StringField('Nom', validators = [InputRequired(message = "Entrez votre nom"), Length(min = 2, message = "Votre nom doit faire 2 lettres minimum")])
-    email = StringField('Email', validators = [InputRequired(message = "Entrez votre email"), Length(min = 7, message = "Votre email doit faire au moins 7 lettres")])
-    username = StringField('Pseudo', validators = [InputRequired(message = "Entrez le pseudo que vous desirez"), Length(min = 2, message = "Votre pseudo doit faire minimum 2 caracteres")])
+    firstName = StringField('Prenom', validators = [InputRequired(message = "Entrez votre prenom")])
+    lastName = StringField('Nom', validators = [InputRequired(message = "Entrez votre nom")])
+    email = StringField('Email', validators = [InputRequired(message = "Entrez votre email")])
+    username = StringField('Pseudo', validators = [InputRequired(message = "Entrez le pseudo que vous desirez")])
     password = PasswordField('Mot de passe', validators = [InputRequired(message = "Entrez un mot de passe"), Length(min = 5, message = "Votre mot de passe doit faire minimum 5 caracteres")])
     confirmPassword = PasswordField('Confirmation mot de passe', validators = [InputRequired(message = "Veuillez confirmer votre mot de passe"), Length(min = 5), EqualTo('password', message = "Huh, ceci n'etait pas votre mot de passe..")])
+
+    assert firstName != ""
+    assert lastName != ""
+    assert email != ""
+    assert username != ""
 
     submit = SubmitField('Creer mon compte')
 
@@ -107,6 +114,10 @@ class UpdateProfileForm(FlaskForm) :
     lastName = StringField('Nom', validators = [DataRequired(message = "Entrez votre nouveau nom ici")])
     email = StringField('Email', validators = [DataRequired(message = "Entrez votre nouvel email ici")])
 
+    assert firstName != ""
+    assert lastName != ""
+    assert email != ""
+
     submit = SubmitField('Mettre a jour')
 
 
@@ -128,11 +139,18 @@ class PartieForm(FlaskForm) :
     ---------------
     Formulary that will be submitted when someone wants to create a game.
     """
+
     gameName = StringField('Nom de partie', validators = [InputRequired(message = "Entrez un nom pour votre partie"), Length(min = 2, message = "Le nom de votre partie doit faire au moins deux caracteres")])
+    assert gameName != ""
+
     nbThemes = IntegerField('Nombre de themes', validators = [InputRequired(message = "Entrez le nombre de themes de votre partie")])
+    assert nbThemes != ""
+
     nbQuestions = IntegerField('Nombre de difficultes', validators = [InputRequired(message = "Entrez le nombre de difficultes par theme, soit le nombre de questions")])
+    assert nbQuestions != ""
 
     submit = SubmitField('Creer la partie')
+
 
 
 class ThemeForm(FlaskForm) :
@@ -142,6 +160,7 @@ class ThemeForm(FlaskForm) :
     Formulary used to define the differents themes associated to a game
     """
     themeName = StringField('Nom du theme', validators = [InputRequired(message = "Entrez le nom d'un theme")])
+    assert themeName != ""
 
     submit = SubmitField('Valider le theme')
 
@@ -158,5 +177,12 @@ class QuestionForm(FlaskForm) :
     reponseC = StringField('Reponse C', validators = [InputRequired(message = "Entrez une trosieme possibilite de reponse")])
     reponseD = StringField('Reponse D', validators = [InputRequired(message = "Entrez une quatrieme possibilite de reponse")])
     bonneReponse = StringField('Bonne reponse', validators = [InputRequired(message = "Entrez la bonne reponse")])
+
+    assert enonce != ""
+    assert reponseA != ""
+    assert reponseB != ""
+    assert reponseC != ""
+    assert reponseD != ""
+    assert bonneReponse != ""
 
     submit = SubmitField('Valider cette question')

@@ -11,7 +11,7 @@
 
     <div class = "row d-flex justify-content-center">
 
-        <form method="POST" action="/editProfile/{{ id }}" novalidate>
+        <form method = "POST" action = "/editProfile" novalidate>
             <!--csfr token-->
             {{ form.csrf_token }}
             {{ form.username.label }} {{ from.username(class = "form-control") }} </br>

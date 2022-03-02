@@ -2,6 +2,19 @@
 
 {% block content %}
 
-    <h2>Votre partie a été créée : </h2>
+    <h3>Votre partie a été créée : </h3>
+    <br>
+    <h2>Voici le code que vous pouvez partager à vos joueurs afin qu'ils puissent la rejoindre.</h2>
+    <br>
+    <div class = "card">
+        <div class = "card-title">
+            Code :
+        </div>
+        <div class = "card-content">
+            xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        </div>
+    </div>
+
+    <a href = {{ url_for('homepage') }} class = "bouton">Retour à l'écran d'accueil</a>
 
 {% endblock %}
