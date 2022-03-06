@@ -1,25 +1,20 @@
-{% extends "base/default.html" %}
+{% extends 'base/default.html' %}
 
 {% block content %}
+
     <br>
-    <h2>Voici la question associee au theme et au niveau de difficulte que vous avez choisi</h2><br>
+    <h2>Correction de la question :</h2><br>
     <div class = "card">
-        <div class = "card-title">
-            Enoncé :
-        </div>
-        <div class = "card-content">
-            <h3>Quelle est la deuxième loi de Newton</h3>
-        </div>
+        <h3>Quelle est la deuxième loi de Newton</h3>
     </div>
     <br>
-    <h5>A vous de choisir la bonne reponse !</h5>
-    <br>
+    <h3>Voici la bonne réponse </h3><br>
     <table class = "table table-striped table-sm">
         <thead>
             <tr>
                 <th scope = "col">N°</th>
                 <th scope = "col">Reponse possible</th>
-                <th scope = "col">Votre choix</th>
+                <th scope = "col">Bonne reponse</th>
             </tr>
         </thead>
         <tbody>
@@ -31,7 +26,7 @@
                     Tout objet non soumis à des forces conserve son état de repos ou de mouvement rectiligne et uniforme
                 </td>
                 <td>
-                    <a class = "btn btn-success" href = {{ url_for('correction') }}>Choisir cette reponse</a>
+                    <a class = "btn btn-danger">Mauvaise réponse</a>
                 </td>
             </tr>
             <tr>
@@ -40,9 +35,8 @@
                 </td>
                 <td>
                     F = m a
-                </td>
                 <td>
-                    <a class = "btn btn-success" href = {{ url_for('correctionBonne') }}>Choisir cette reponse</a>
+                    <a class = "btn btn-success">Bonne réponse</a>
                 </td>
             </tr>
             <tr>
@@ -53,7 +47,7 @@
                     Action et réaction: si un objet exerce une force F sur un second objet, celui-ci exerce à son tour une force -F sur le premier.
                 </td>
                 <td>
-                    <a class = "btn btn-success" href = {{ url_for('correction') }}>Choisir cette reponse</a>
+                    <a class = "btn btn-danger">Mauvaise Reponse</a>
                 </td>
             </tr>
             <tr>
@@ -64,10 +58,22 @@
                     Les forces de frottements.
                 </td>
                 <td>
-                    <a class = "btn btn-success" href = {{ url_for('correction') }}>Choisir cette reponse</a>
+                    <a class = "btn btn-danger">Mauvaise Reponse</a>
                 </td>
             </tr>
         </tbody>
     </table>
+    <br>
+    <br>
+    <div class = "card">
+        <div class = "card-title">
+            Nombre de points gagnes :
+        </div>
+        <div class = "card-content">
+            Félicitations ! Vous avez gagné 2 points avec cette question.
+        </div>
+    </div>
+    <br>
+    <a href = {{ url_for('podium') }} class = "bouton">Voir le classement</a>
 
 {% endblock %}

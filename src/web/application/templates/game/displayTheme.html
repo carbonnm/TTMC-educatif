@@ -4,20 +4,28 @@
     <br>
     <h2>Voici le theme de la prochaine question :</h2><br>
     <div class = "card">
-        xxxxxxxxxxxxx
+        <div class = "card-content">
+            <h3>Lois de Newton</h3>
+        </div>
     </div>
     <br><br>
     <h3>Choisissez la difficulte avec laquette vous etes la plus a l'aise en fonction de ce theme</h3>
-    <p>Attention, au plus le chiffre est eleve, au plus la difficulte l'est.</p>
+    <p>Vous gagnerez des points en fonction de ce nombre</p>
+    <br>
     <div class = "text_left">
         <select id = "themePick" class = "form-control d-inline" placeholder = "Choisissez ici">
-            <option value = "1">1</option>
-            <option value = "2">2</option>
-            <option value = "3">3</option>
-            <option value = "4">4</option>
-            <option value = "5">5</option>
+            <option value = "1">
+                Question simple
+            </option>
+            <option value = "2">
+                Question moyenne
+            </option>
+            <option value = "3">
+                Question difficile
+            </option>
         </select>
+        <br>
+        <br>
         <a class = "bouton" id = "pickThemeButton" href = {{ url_for('question') }}>Choisir</a>
     </div>
-
 {% endblock %}

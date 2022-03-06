@@ -183,6 +183,15 @@ def enterUsername() :
     return render_template("game/username.html")
 
 
+@app.route("/api/profile/username", methods=["GET"])
+@login_required
+def apiProfileUsername() :
+    """
+    Gets the username of the current user.
+    """
+    return jsonify(current_user.username)
+
+
 @app.route("/loadGame")
 def loadGame() :
     """
@@ -231,7 +240,6 @@ def createThemes() :
     """
     if not current_user.is_authenticated :
         return redirect(url_for("login"))
-    
     form = ThemeForm()
     if form.validate_on_submit():
         newTheme = Theme(themeName = form.themeName.data, associatedGame = "forLater")
@@ -258,7 +266,7 @@ def createQuestions() :
         newQuestion = Question(enonce = form.enonce.data, reponseA = form.reponseA.data, reponseB = form.reponseB.data, reponseC = form.reponseC.data, reponseD = form.reponseD.data, bonneReponse = form.bonneReponse.data, difficultyLevel = 3, nbPoints = 3, associatedTheme = "theme")
         db.session.add(newQuestion)
         db.session.commit()
-        return redirect(url_for('creationGameLoading'))
+        return redirect(url_for('createQuestions'))
     return render_template('teacher/createQuestions.html', form = form)
 
 
@@ -290,6 +298,15 @@ def accessGame() :
     if not current_user.is_authenticated :
         return redirect(url_for("login"))
     return render_template('teacher/accessGame.html')
+
+
+@app.route("/api/profile/game", methods=["GET"])
+@login_required
+def apiProfileGame() :
+    """
+    Gets the game names of the current user
+    """
+    return jsonify([game.nameGame for game in current_user.game])
 
 
 @app.route("/editGame/<int:id>", methods=["GET", "POST"])
@@ -362,7 +379,7 @@ def displayTheme() :
     """
     Function that display the themes and ask the player which difficulty he wants.
     """
-    return render_template('game/theme.html')
+    return render_template('game/displayTheme.html')
 
 
 @app.route("/question")
@@ -377,10 +394,19 @@ def question() :
 @app.route("/correction")
 def correction() :
     """
-    Will display the correction of the correct answer.
-    The player will know how much points he earns.
+    Will display the correction (if the player gets the answer wrong).
+    The player will know how much points he earns (here = zero).
     """
     return render_template('game/correction.html')
+
+
+@app.route("/correctionBonne")
+def correctionBonne():
+    """
+    Display of the correction (if the players gets the answer well).
+    The player will know the number of points he earns.
+    """
+    return render_template('game/correctionBonne.html')
 
 
 @app.route("/podium")

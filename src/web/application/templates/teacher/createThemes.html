@@ -2,24 +2,19 @@
 
 {% block content %}
     <br>
-    <h2>Creation d'un theme</h2><br>
+    <h2>Creation des thèmes d'une partie : </h2><br>
+    <h3>Ajoutez un thème :  </h3>
     <div class = "row d-flex justify-content-center">
         <form method = "POST" action = "/createThemes" novalidate>
             {{ form.csrf_token }}
-
             <!--Name of the game-->
             <div class = "entree themeName">
                 {{ form.themeName(placeholder = form.themeName.label.text, class = "form-control") }} </br>
                 {% if form.themeName.errors %} {%for error in form.themeName.errors %}
                     {{ message }}
                 {% endfor %}{% endif %}
+                {{ form.submit(class = "petitBouton") }}
             </div>
-
-            <!--Submittion-->
-            <div class = "row d-flex justify-content-center">
-                {{ form.submit(class = "bouton") }}
-            </div>
-            
         </form>
     </div>
 

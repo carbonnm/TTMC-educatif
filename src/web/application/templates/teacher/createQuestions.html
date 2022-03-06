@@ -3,6 +3,8 @@
 {% block content %}
     <br>
     <h2>Creation des questions</h2>
+    <br>
+    <h3>Veuillez maintenant créer la question relative au thème que vous venez de définir</h3>
     <div class = "row d-flex justify-content-center">
         <form method = "POST" action = "/createQuestions" novalidate>
             {{ form.csrf_token }}
@@ -52,8 +54,18 @@
             <!--Submittion-->
             <div class = "row d-flex justify-content-center">
                 {{ form.submit(class = "bouton") }}
+                <br>
             </div>
-            
+            <br>
+            <div class = "row d-flex justify-content-center">
+                <a href = {{ url_for('createThemes') }} class = "bouton">Nouveau thème</a>
+                <br>
+            </div>
+            <br>
+            <div class = "row d-flex justify-content-center">
+                <a href = {{ url_for('gameIsCreated') }} class = "bouton">J'ai fini ! </a>
+                <br>
+            </div>
         </form>
     </div>
 

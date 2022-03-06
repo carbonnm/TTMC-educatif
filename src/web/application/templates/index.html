@@ -10,8 +10,18 @@
 
     <h2>Rejoindre une partie : </h2>
     <br>
+    <div class = "card">
+        <div class = "card-title">
+            Quizz Physique
+        </div>
+        <div class = "card-content">
+            Si tu veux tester tes connaissances sur la physique, le code "physique" te permettra de t'évaluer !
+        </div>
+    </div>
+    <br>
+    <br>
     <div>
-        <input id = "urlSearch" class = "form-control d-inline" type = "search" placeholder = "Entrez une URL de partie ici">
+        <input id = "urlSearch" class = "form-control d-inline" type = "search" placeholder = "Entrez une nom de partie ici">
         <br>
         <a class = "bouton" href = {{ url_for('enterUsername') }}>Rejoindre</a>
     </div>

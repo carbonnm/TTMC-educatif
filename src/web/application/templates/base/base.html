@@ -12,14 +12,10 @@
 
 		<!--Because I'll certainly use jQuery-->
 
-		<script src= "/static/js/jquery-3.6.0.min.js"></script>
-        <script src= "/static/js/jquery-ui.min.js"></script>
-        <script src= "/static/js/socket.io.min.js"></script>
+		<script src= "/static/js/library/jquery-3.6.0.min.js"></script>
+        <script src= "/static/js/library/jquery-ui.min.js"></script>
+        <script src= "/static/js/library/socket.io.min.js"></script>
 
-        <!--What follow is here to make sure that any jQuery code would not be runned before that the document is finished loadin.-->
-        <script>
-            $(document).ready( function(){ alert( jQuery('p').text() )})
-        </script>
 
 		<Title>TTMC</Title>
 	</head>
@@ -52,5 +48,9 @@
 	</body>
 
 	<!--Gestion of the socket-->
-	<script>var socket = io();</script>
+	{% block scripts %}
+
+		<script>var socket = io();</script>
+		
+	{% endblock scripts %}
 </html>

@@ -185,4 +185,4 @@ class QuestionForm(FlaskForm) :
     assert reponseD != ""
     assert bonneReponse != ""
 
-    submit = SubmitField('Valider cette question')
+    submit = SubmitField('Question pour la prochaine difficulté')

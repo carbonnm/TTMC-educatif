@@ -5,8 +5,10 @@
 {% endblock gcreation %}
 
 {% block content %}
-
+    <br>
+    <br>
     <h2>Creation d'une partie de TTMC</h2>
+    <br>
     <div class = "row d-flex justify-content-center">
         <form method = "POST" action = "/createGame" novalidate>
             {{ form.csrf_token }}
@@ -44,3 +46,9 @@
     </div>
 
 {% endblock %}
+
+{% block scripts %}
+
+    <script src = "/static/js/accessGame.js"></script>
+
+{% endblock scripts %}
